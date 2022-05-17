@@ -1,0 +1,190 @@
+system: "configs/sys_obstacle_detection_without_mismatch.yaml"
+auto_chain: true
+with_priors: true
+endpoints:
+  radar_obstacles: "radar -> obstacles"
+  lidar_obstacles: "lidar -> obstacles" 
+  camera_obstacles: "front camera -> obstacles"
+  sensor_fusion: "sensor fusion -> obstacles"
+  gt_obstacles: null 
+failure_modes:
+  lidar_obstacles_misdetection: "lidar -> obstacles . misdetection"
+  lidar_obstacles_misposition: "lidar -> obstacles . misposition"
+  lidar_obstacles_misclassification: "lidar -> obstacles . misclassification"
+  radar_obstacles_misdetection: "radar -> obstacles . misdetection" 
+  radar_obstacles_misposition: "radar -> obstacles . misposition"
+  radar_obstacles_misclassification: "radar -> obstacles . misclassification"
+  camera_obstacles_misdetection: "front camera -> obstacles . misdetection"
+  camera_obstacles_misposition: "front camera -> obstacles . misposition"
+  camera_obstacles_misclassification: "front camera -> obstacles . misclassification"
+  sensor_fusion_misdetection: "sensor fusion -> obstacles . misdetection"
+  sensor_fusion_misposition: "sensor fusion -> obstacles . misposition"
+  sensor_fusion_misclassification: "sensor fusion -> obstacles . misclassification"
+relations:
+  camera_failure: 
+    type: AtLeastOne
+    A:
+      - "front camera . out of distribution"
+    B:
+      - front camera -> obstacles . misdetection
+      - front camera -> obstacles . misposition
+      - front camera -> obstacles . misclassification
+  radar_failure: 
+    type: AtLeastOne
+    A:
+      - "radar . out of distribution"
+    B:
+      - radar -> obstacles . misdetection
+      - radar -> obstacles . misposition
+      - radar -> obstacles . misclassification
+  camera_failure: 
+    type: AtLeastOne
+    A:
+      - "lidar . out of distribution"
+    B:
+      - lidar -> obstacles . misdetection
+      - lidar -> obstacles . misposition
+      - lidar -> obstacles . misclassification
+  sensor_fusion_failure: 
+    type: AtLeastOne
+    A:
+      - "sensor fusion . misassociation"
+    B:
+      - sensor fusion -> obstacles . misdetection
+      - sensor fusion -> obstacles . misposition
+      - sensor fusion -> obstacles . misclassification
+tests:
+  camera_obstacles_to_sensor_fusion_misdetection:
+    scope:
+      - camera_obstacles_misdetection
+      - sensor_fusion_misdetection
+  camera_obstacles_to_sensor_fusion_misposition:
+    scope:
+      - camera_obstacles_misposition
+      - sensor_fusion_misposition
+  camera_obstacles_to_sensor_fusion_misclassification:
+    scope:
+      - camera_obstacles_misclassification
+      - sensor_fusion_misclassification
+  lidar_obstacles_to_sensor_fusion_misdetection:
+    scope:
+      - lidar_obstacles_misdetection
+      - sensor_fusion_misposition
+  lidar_obstacles_to_sensor_fusion_misposition:
+    scope:
+      - lidar_obstacles_misposition
+      - sensor_fusion_misposition
+  lidar_obstacles_to_sensor_fusion_misclassification:
+    scope:
+      - lidar_obstacles_misclassification
+      - sensor_fusion_misclassification
+  radar_obstacles_to_camera_obstacles_misdetection:
+    scope:
+      - radar_obstacles_misdetection
+      - camera_obstacles_misdetection
+  radar_obstacles_to_camera_obstacles_misposition:
+    scope:
+      - radar_obstacles_misposition
+      - camera_obstacles_misposition
+  radar_obstacles_to_camera_obstacles_misclassification:
+    scope:
+      - radar_obstacles_misclassification
+      - camera_obstacles_misclassification
+  radar_obstacles_to_sensor_fusion_misdetection:
+    scope:
+      - radar_obstacles_misdetection
+      - sensor_fusion_misdetection
+  radar_obstacles_to_sensor_fusion_misposition:
+    scope:
+      - radar_obstacles_misposition
+      - sensor_fusion_misposition
+  radar_obstacles_to_sensor_fusion_misclassification:
+    scope:
+      - radar_obstacles_misclassification
+      - sensor_fusion_misclassification
+  lidar_obstacles_to_camera_obstacles_misdetection:
+    scope:
+      - lidar_obstacles_misdetection
+      - camera_obstacles_misdetection
+  lidar_obstacles_to_camera_obstacles_misposition:
+    scope:
+      - lidar_obstacles_misposition
+      - camera_obstacles_misposition
+  lidar_obstacles_to_camera_obstacles_misclassification:
+    scope:
+      - lidar_obstacles_misclassification
+      - camera_obstacles_misclassification
+  lidar_obstacles_to_radar_obstacles_misdetection:
+    scope:
+      - lidar_obstacles_misdetection
+      - radar_obstacles_misdetection
+  lidar_obstacles_to_radar_obstacles_misposition:
+    scope:
+      - lidar_obstacles_misposition
+      - radar_obstacles_misposition
+  lidar_obstacles_to_radar_obstacles_misclassification:
+    scope:
+      - lidar_obstacles_misclassification
+      - radar_obstacles_misclassification
+temporal:
+  lidar_obstacles_to_lidar_obstacles_misdetection:
+    scope:
+      - lidar_obstacles_misdetection|0
+      - lidar_obstacles_misdetection|1
+  lidar_obstacles_to_lidar_obstacles_misposition:
+    scope:
+      - lidar_obstacles_misposition|0
+      - lidar_obstacles_misposition|1
+  lidar_obstacles_to_lidar_obstacles_misclassification:
+    scope:
+      - lidar_obstacles_misclassification|0
+      - lidar_obstacles_misclassification|1
+  camera_obstacles_to_camera_obstacles_misdetection:
+    scope:
+      - camera_obstacles_misdetection|0
+      - camera_obstacles_misdetection|1
+  camera_obstacles_to_camera_obstacles_misposition:
+    scope:
+      - camera_obstacles_misposition|0
+      - camera_obstacles_misposition|1
+  camera_obstacles_to_camera_obstacles_misclassification:
+    scope:
+      - camera_obstacles_misclassification|0
+      - camera_obstacles_misclassification|1
+  radar_obstacles_to_radar_obstacles_misdetection:
+    scope:
+      - radar_obstacles_misdetection|0
+      - radar_obstacles_misdetection|1
+  radar_obstacles_to_radar_obstacles_misposition:
+    scope:
+      - radar_obstacles_misposition|0
+      - radar_obstacles_misposition|1
+  radar_obstacles_to_radar_obstacles_misclassification:
+    scope:
+      - radar_obstacles_misclassification|0
+      - radar_obstacles_misclassification|1
+  sensor_fusion_to_sensor_fusion_misdetection:
+    scope:
+      - sensor_fusion_misdetection|0
+      - sensor_fusion_misdetection|1
+  sensor_fusion_to_sensor_fusion_misposition:
+    scope:
+      - sensor_fusion_misposition|0
+      - sensor_fusion_misposition|1
+  sensor_fusion_to_sensor_fusion_misclassification:
+    scope:
+      - sensor_fusion_misclassification|0
+      - sensor_fusion_misclassification|1
+ground_truth_tests:
+  - lidar_obstacles_misdetection
+  - lidar_obstacles_misposition
+  - lidar_obstacles_misclassification
+  - radar_obstacles_misdetection
+  - radar_obstacles_misposition
+  - radar_obstacles_misclassification
+  - camera_obstacles_misdetection
+  - camera_obstacles_misposition
+  - camera_obstacles_misclassification
+  - sensor_fusion_misdetection
+  - sensor_fusion_misposition
+  - sensor_fusion_misclassification

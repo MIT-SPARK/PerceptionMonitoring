@@ -1,0 +1,65 @@
+Artifact: "test_stats.json"
+TimingArtifact: "test_timing.csv"
+Algorithms:
+  Factor Graph:
+    key: dfg
+    # regular: 451d1654d06242809a2e6d4cf84546cc
+    regular: 384749f86d0d4127a051d1221d10ff2f
+    temporal: 3aebd909437549b3a0c7ad191b94e9b9
+    color: "xkcd:bright blue"
+    marker: "o"
+  Deterministic:
+    key: deterministic
+    regular: b3f16b4b561c4320bffd2ad8aead9469
+    temporal: 5c7ab420db484925a9391f535422d25e
+    color: "xkcd:rust red"
+    marker: "^"
+  Baseline (w/rel. scores):
+    key: watchdog
+    regular: 16486386c7cd4369ad7e00b616e3da66
+    temporal: cb911be1f52f43f38337dc0361996417
+    color: "xkcd:baby pink"
+    marker: "s"
+  Baseline:
+    key: watchdog
+    regular: f269acf1e77c45288c66f46f186f7462
+    temporal: c2f38f6a5f1349f98d7dfad326b7482d
+    color: "xkcd:orange"
+    marker: "^"
+  GCN:
+    key: gnn
+    regular: 913d593590d84945928cc2ead4f8d425
+    temporal: 52499e21b396410eb910bf8fce9f6690
+    color: "xkcd:turquoise"
+    marker: "d"
+  GCNII:
+    key: gnn
+    regular: f26bcb9083d6487fa5334510d1888f1d
+    temporal: 57e53ae895fe4556b3e3ec661b1244af
+    color: "xkcd:magenta"
+    marker: "*"
+  GIN:
+    key: gnn
+    regular: 6b5bef1180e84546979f9e170408504d
+    temporal: a08beb826e184612a69331ca86327fd4
+    color: "xkcd:grass green"
+    marker: "P"
+  GraphSage:
+    key: gnn
+    regular: 42a2f922bbf14f86979c55780eb96599
+    temporal: 221ac3d19d5f41bbb63434fbcca10635 
+    color: "xkcd:dark blue"
+    marker: "X"
+Plots:
+  ROC:
+    marker_size: 60
+    font_size: 12
+  Bounds:
+    font_size: 12
+    line_width: 2
+  Detection:
+    marker_size: 60
+    font_size: 12
+    dataset: test.pkl
+    inference: test_inference.csv
+    last_only: True

@@ -1,0 +1,55 @@
+system: "configs/sys_dummy.yaml"
+auto_chain: true
+with_priors: true
+endpoints:
+  output_1: "module 1 -> output"
+  output_2: "module 2 -> output"
+  output_3: "module 3 -> output"
+failure_modes:
+  m1: "module 1 . m1 failure"
+  m2: "module 2 . m2 failure"
+  m3: "module 3 . m3 failure"
+  o1: "module 1 -> output . o1 failure"
+  o2: "module 2 -> output . o2 failure"
+  o3: "module 3 -> output . o3 failure"
+relations:
+  module_1_failure: 
+    type: AtLeastOne
+    A:
+      - "module 1 . m1 failure"
+    B:
+      - "module 1 -> output . o1 failure"
+  module_2_failure: 
+    type: AtLeastOne
+    A:
+      - "module 2 . m2 failure"
+    B:
+      - "module 2 -> output . o2 failure"
+  module_3_failure: 
+    type: AtLeastOne
+    A:
+      - "module 3 . m3 failure"
+    B:
+      - "module 3 -> output . o3 failure"
+tests:
+  test_1:
+    scope:
+      - o1
+      - o2
+  test_2:
+    scope:
+      - o2
+      - o3
+temporal:
+  o_1_1:
+    scope:
+      - o1|0
+      - o1|1
+  o_2_2:
+    scope:
+      - o2|0
+      - o2|1
+  o_3_3:
+    scope:
+      - o3|0
+      - o3|1

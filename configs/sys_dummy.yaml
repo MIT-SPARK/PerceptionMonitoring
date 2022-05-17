@@ -1,0 +1,48 @@
+Data:
+  output_1:
+    Name: output
+    Type: unknown
+    FailureModes:
+      - o1 failure
+  output_2:
+    Name: output
+    Type: unknown
+    FailureModes:
+      - o2 failure
+  output_3:
+    Name: output
+    Type: unknown
+    FailureModes:
+      - o3 failure
+Modules:
+  module_1:
+    Name: "module 1"
+    FailureModes:
+      - m1 failure
+    Outputs:
+      - output_1
+  module_2:
+    Name: "module 2"
+    FailureModes:
+      - m2 failure
+    Outputs:
+      - output_2
+  module_3:
+    Name: "module 3"
+    FailureModes:
+      - m3 failure
+    Outputs:
+      - output_3
+Relations:
+  - FailureMode: "module 1 . m1 failure"
+    Type: AtLeastOne
+    If:
+      - "module 1 -> output . o1 failure"
+  - FailureMode: "module 2 . m2 failure"
+    Type: AtLeastOne
+    If:
+      - "module 2 -> output . o2 failure"
+  - FailureMode: "module 3 . m3 failure"
+    Type: AtLeastOne
+    If:
+      - "module 3 -> output . o3 failure"

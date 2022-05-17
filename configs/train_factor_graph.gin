@@ -1,0 +1,18 @@
+Main.debug = False
+Main.ignore_modules = False
+Main.dfg_randomize = False
+
+Main.cd_steps = 0
+Main.cd_gibbs_sweeps = 100
+Main.cd_batch_size = 0
+Main.cd_stepsize = 0.01
+
+Main.ml_max_iterations = 0
+Main.ml_tolerance = 1e-6
+
+Main.ssvm_tolerance = 1e-8
+Main.ssvm_regularization = 0.1
+Main.ssvm_opt_method = "stochastic"
+Main.ssvm_iterations = 100 
+
+

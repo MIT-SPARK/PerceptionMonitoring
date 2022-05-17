@@ -1,0 +1,66 @@
+model: "obstacle detection with mismatch type"
+endpoints:
+  radar_obstacles: "radar -> obstacles"
+  lidar_obstacles: "lidar -> obstacles" 
+  camera_obstacles: "front camera -> obstacles"
+  sensor_fusion: "sensor fusion -> obstacles"
+  gt_obstacles: null 
+failure_modes:
+  lidar_obstacles_miss: "lidar -> obstacles . miss"
+  lidar_obstacles_ghost: "lidar -> obstacles . ghost"
+  lidar_obstacles_misposition: "lidar -> obstacles . misposition"
+  lidar_obstacles_misclassification: "lidar -> obstacles . misclassification"
+  radar_obstacles_miss: "radar -> obstacles . miss" 
+  radar_obstacles_ghost: "radar -> obstacles . ghost" 
+  radar_obstacles_misposition: "radar -> obstacles . misposition"
+  radar_obstacles_misclassification: "radar -> obstacles . misclassification"
+  camera_obstacles_miss: "front camera -> obstacles . miss"
+  camera_obstacles_ghost: "front camera -> obstacles . ghost" 
+  camera_obstacles_misposition: "front camera -> obstacles . misposition"
+  camera_obstacles_misclassification: "front camera -> obstacles . misclassification"
+  sensor_fusion_miss: "sensor fusion -> obstacles . miss"
+  sensor_fusion_ghost: "sensor fusion -> obstacles . ghost" 
+  sensor_fusion_misposition: "sensor fusion -> obstacles . misposition"
+  sensor_fusion_misclassification: "sensor fusion -> obstacles . misclassification"
+tests:
+  camera_obstacles_miss_to_sensor_fusion_ghost: "camera_miss_to_sensor_fusion_ghost"
+  camera_obstacles_ghost_to_sensor_fusion_miss: "camera_ghost_to_sensor_fusion_miss"
+  camera_obstacles_to_sensor_fusion_misposition: "camera_to_sensor_fusion_misposition"
+  camera_obstacles_to_sensor_fusion_misclassification: "camera_to_sensor_fusion_misclassification"
+  lidar_obstacles_miss_to_sensor_fusion_ghost: "lidar_miss_to_sensor_fusion_ghost"
+  lidar_obstacles_ghost_to_sensor_fusion_miss: "lidar_ghost_to_sensor_fusion_miss"
+  lidar_obstacles_to_sensor_fusion_misposition: "lidar_to_sensor_fusion_misposition"
+  lidar_obstacles_to_sensor_fusion_misclassification: "lidar_to_sensor_fusion_misclassification"
+  radar_obstacles_miss_to_camera_obstacles_ghost: "radar_miss_to_camera_ghost"
+  radar_obstacles_ghost_to_camera_obstacles_miss: "radar_ghost_to_camera_miss"
+  radar_obstacles_to_camera_obstacles_misposition: "radar_to_camera_misposition"
+  radar_obstacles_to_camera_obstacles_misclassification: "radar_to_camera_misclassification"
+  radar_obstacles_miss_to_sensor_fusion_ghost: "radar_miss_to_sensor_fusion_ghost"
+  radar_obstacles_ghost_to_sensor_fusion_miss: "radar_ghost_to_sensor_fusion_miss"
+  radar_obstacles_to_sensor_fusion_misposition: "radar_to_sensor_fusion_misposition"
+  radar_obstacles_to_sensor_fusion_misclassification: "radar_to_sensor_fusion_misclassification"
+  lidar_obstacles_miss_to_camera_obstacles_ghost: "lidar_miss_to_camera_ghost"
+  lidar_obstacles_ghost_to_camera_obstacles_miss: "lidar_ghost_to_camera_miss"
+  lidar_obstacles_to_camera_obstacles_misposition: "lidar_to_camera_misposition"
+  lidar_obstacles_to_camera_obstacles_misclassification: "lidar_to_camera_misclassification"
+  lidar_obstacles_miss_to_radar_obstacles_ghost: "lidar_miss_to_radar_ghost"
+  lidar_obstacles_ghost_to_radar_obstacles_miss: "lidar_ghost_to_radar_miss"
+  lidar_obstacles_to_radar_obstacles_misposition: "lidar_to_radar_misposition"
+  lidar_obstacles_to_radar_obstacles_misclassification: "lidar_to_radar_misclassification"
+ground_truth_tests:
+  - lidar_obstacles_miss
+  - lidar_obstacles_ghost
+  - lidar_obstacles_misposition
+  - lidar_obstacles_misclassification
+  - radar_obstacles_miss
+  - radar_obstacles_ghost
+  - radar_obstacles_misposition
+  - radar_obstacles_misclassification
+  - camera_obstacles_miss
+  - camera_obstacles_ghost
+  - camera_obstacles_misposition
+  - camera_obstacles_misclassification
+  - sensor_fusion_miss
+  - sensor_fusion_ghost
+  - sensor_fusion_misposition
+  - sensor_fusion_misclassification

@@ -1,0 +1,40 @@
+Artifact: "test_stats.json"
+TimingArtifact: "test_timing.csv"
+Algorithms:
+  GCN:
+    key: gnn
+    regular: 6eb2ab973f904038a406c50218c9949e
+    temporal: 9a46920d830a492aaf69a6f8c35d26ab
+    color: "xkcd:turquoise"
+    marker: "d"
+  GCNII:
+    key: gnn
+    regular: 19f4e9ab15d840cebaca99bb2634d50b
+    temporal: 386fb6b1dd944117905f6810a32e1c77
+    color: "xkcd:magenta"
+    marker: "*"
+  GIN:
+    key: gnn
+    regular: 27a8d618941d44e3a0e1de7f9ae0946f
+    temporal: b219a77f34a14e3bbbda337647c25144
+    color: "xkcd:grass green"
+    marker: "P"
+  GraphSage:
+    key: gnn
+    regular: 65841638d1c246a9b9aae7ca8db8bc62
+    temporal: 8caa880f0cfc47ac997005a25084de02
+    color: "xkcd:dark blue"
+    marker: "X"
+Plots:
+  ROC:
+    marker_size: 60
+    font_size: 12
+  Bounds:
+    font_size: 12
+    line_width: 2
+  Detection:
+    marker_size: 60
+    font_size: 12
+    dataset: test.pkl
+    inference: test_inference.csv
+    last_only: True

@@ -1,0 +1,83 @@
+Data:
+  camera_obstacles:
+    Name: obstacles
+    Type: obstacles
+    FailureModes:
+      - misdetection (3)
+      - misposition (2)
+      - misclassification (1)
+  radar_obstacles:
+    Name: obstacles
+    Type: obstacles
+    FailureModes:
+      - misdetection (3)
+      - misposition (2)
+      - misclassification (1)
+  lidar_obstacles:
+    Name: obstacles
+    Type: obstacles
+    FailureModes:
+      - misdetection (3)
+      - misposition (2)
+      - misclassification (1)
+  sensor_fusion_obstacles:
+    Name: obstacles
+    Type: obstacles
+    FailureModes:
+      - misdetection (3)
+      - misposition (2)
+      - misclassification (1)
+Modules:
+  front_camera:
+    Name: "front camera"
+    FailureModes:
+      - out of distribution (0)
+    Outputs:
+      - camera_obstacles
+  lidar:
+    Name: lidar
+    FailureModes:
+      - out of distribution (0)
+    Outputs:
+      - lidar_obstacles
+  radar:
+    Name: radar
+    FailureModes:
+      - out of distribution (0)
+    Outputs:
+      - radar_obstacles
+  sensor_fusion:
+    Name: "sensor fusion"
+    FailureModes:
+      - misassociation (0)
+    Inputs:
+      - lidar_obstacles
+      - radar_obstacles
+      - camera_obstacles
+    Outputs:
+      - sensor_fusion_obstacles
+Relations:
+  - FailureMode: "front camera . out of distribution"
+    Type: AtLeastOne
+    If:
+      - "front camera -> obstacles . misdetection"
+      - "front camera -> obstacles . misposition"
+      - "front camera -> obstacles . misclassification"
+  - FailureMode: "radar . out of distribution"
+    Type: AtLeastOne
+    If:
+      - "radar -> obstacles . misdetection"
+      - "radar -> obstacles . misposition"
+      - "radar -> obstacles . misclassification"
+  - FailureMode: "lidar . out of distribution"
+    Type: AtLeastOne
+    If:
+      - "lidar -> obstacles . misdetection"
+      - "lidar -> obstacles . misposition"
+      - "lidar -> obstacles . misclassification"
+  - FailureMode: "sensor fusion . misassociation"
+    Type: AtLeastOne
+    If:
+      - "sensor fusion -> obstacles . misdetection"
+      - "sensor fusion -> obstacles . misposition"
+      - "sensor fusion -> obstacles . misclassification"

@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "diagnosability"
+version = "0.1.0"
+description = "Monitoring and diagnosability of AV's perception systems"
+authors = ["Pasquale Antonante <antonap@mit.edu>"]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.9"
+pgmpy = {path = "../pgmpy", develop = true}
+pandas = "^1.2.5"
+scipy = "^1.7.0"
+nptyping = "^1.4.2"
+scikit-learn = "^0.24.2"
+poethepoet = "^0.10.0"
+gin-config = "^0.4.0"
+matplotlib = "^3.4.2"
+bidict = "^0.21.2"
+rich = "^10.15.1"
+pydot = "^1.4.2"
+mlflow = "^1.19.0"
+yaspin = "^2.1.0"
+ortools = "^9.3.10459"
+msgpack-python = "^0.5.6"
+dataclasses-json = "^0.5.7"
+dacite = "^1.6.0"
+dash = "^2.3.1"
+dash-bootstrap-components = "^1.1.0"
+dash-cytoscape = "^0.3.0"
+scienceplots = {git = "https://github.com/garrettj403/SciencePlots"}
+seaborn = "^0.8.1"
+adjustText = "^0.7.3"
+click = "=8.0.4"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+black = "^21.6b0"
+ptvsd = "^4.3.2"
+numpy = "^1.22.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poe.tasks]
+install-pytorch = "python -m pip install torch==1.9.0+cu111 -f https://download.pytorch.org/whl/torch_stable.html torch-sparse -f https://pytorch-geometric.com/whl/torch-1.9.0+cu111.html torch-scatter -f https://pytorch-geometric.com/whl/torch-1.9.0+cu111.html torch-geometric pytorch-lightning"
+mlflow-start = { shell = "mlflow server --host 0.0.0.0 &; sleep 2" }
+mlflow-stop = { shell = "pkill -f gunicorn" }

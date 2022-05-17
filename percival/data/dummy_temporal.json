@@ -1,0 +1,143 @@
+{
+    "variables": [
+        {
+            "name": "failure m1",
+            "varname": "140233601028304_failure m1",
+            "type": "module",
+            "prior": 0.1
+        },
+        {
+            "name": "failure m2",
+            "varname": "140229580610624_failure m2",
+            "type": "module",
+            "prior": 0.1
+        },
+        {
+            "name": "failure m3",
+            "varname": "140229580611296_failure m3",
+            "type": "module",
+            "prior": 0.1
+        },
+        {
+            "name": "failure o1",
+            "varname": "140233604369136_failure o1",
+            "type": "output",
+            "prior": null
+        },
+        {
+            "name": "failure o2",
+            "varname": "140229585165952_failure o2",
+            "type": "output",
+            "prior": null
+        },
+        {
+            "name": "failure o3",
+            "varname": "140229580610720_failure o3",
+            "type": "output",
+            "prior": null
+        }
+    ],
+    "tests": [
+        {
+            "type": "test",
+            "name": "t0",
+            "varname": "140229580611056_t0",
+            "scope": [
+                "140233604369136_failure o1",
+                "140229585165952_failure o2"
+            ],
+            "densities": [
+                1.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        {
+            "type": "test",
+            "name": "t1",
+            "varname": "140229580611104_t1",
+            "scope": [
+                "140229585165952_failure o2",
+                "140229580610720_failure o3"
+            ],
+            "densities": [
+                1.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1.0,
+                1.0,
+                1.0
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "type": "constraint",
+            "name": "r0",
+            "scope": [
+                "140233601028304_failure m1",
+                "140233604369136_failure o1"
+            ],
+            "densities": [
+                1.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        },
+        {
+            "type": "constraint",
+            "name": "r1",
+            "scope": [
+                "140229580610624_failure m2",
+                "140229585165952_failure o2"
+            ],
+            "densities": [
+                1.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        },
+        {
+            "type": "constraint",
+            "name": "r2",
+            "scope": [
+                "140229580611296_failure m3",
+                "140233604369136_failure o1",
+                "140229585165952_failure o2"
+            ],
+            "densities": [
+                1.0,
+                0.1,
+                0.1,
+                0.010000000000000002,
+                0.010000000000000002,
+                0.9,
+                0.9,
+                1.0
+            ]
+        },
+        {
+            "type": "constraint",
+            "name": "r3",
+            "scope": [
+                "140229580611296_failure m3",
+                "140229580610720_failure o3"
+            ],
+            "densities": [
+                1.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        }
+    ]
+}

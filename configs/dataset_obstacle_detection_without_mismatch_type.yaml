@@ -1,0 +1,52 @@
+model: "obstacle detection without mismatch type"
+endpoints:
+  radar_obstacles: "radar -> obstacles"
+  lidar_obstacles: "lidar -> obstacles" 
+  camera_obstacles: "front camera -> obstacles"
+  sensor_fusion: "sensor fusion -> obstacles"
+  gt_obstacles: null 
+failure_modes:
+  lidar_obstacles_misdetection: "lidar -> obstacles . misdetection"
+  lidar_obstacles_misposition: "lidar -> obstacles . misposition"
+  lidar_obstacles_misclassification: "lidar -> obstacles . misclassification"
+  radar_obstacles_misdetection: "radar -> obstacles . misdetection" 
+  radar_obstacles_misposition: "radar -> obstacles . misposition"
+  radar_obstacles_misclassification: "radar -> obstacles . misclassification"
+  camera_obstacles_misdetection: "front camera -> obstacles . misdetection"
+  camera_obstacles_misposition: "front camera -> obstacles . misposition"
+  camera_obstacles_misclassification: "front camera -> obstacles . misclassification"
+  sensor_fusion_misdetection: "sensor fusion -> obstacles . misdetection"
+  sensor_fusion_misposition: "sensor fusion -> obstacles . misposition"
+  sensor_fusion_misclassification: "sensor fusion -> obstacles . misclassification"
+tests:
+  camera_obstacles_to_sensor_fusion_misdetection: "camera_to_sensor_fusion_misdetection"
+  camera_obstacles_to_sensor_fusion_misposition: "camera_to_sensor_fusion_misposition"
+  camera_obstacles_to_sensor_fusion_misclassification: "camera_to_sensor_fusion_misclassification"
+  lidar_obstacles_to_sensor_fusion_misdetection: "lidar_to_sensor_fusion_misdetection"
+  lidar_obstacles_to_sensor_fusion_misposition: "lidar_to_sensor_fusion_misposition"
+  lidar_obstacles_to_sensor_fusion_misclassification: "lidar_to_sensor_fusion_misclassification"
+  radar_obstacles_to_camera_obstacles_misdetection: "radar_to_camera_misdetection"
+  radar_obstacles_to_camera_obstacles_misposition: "radar_to_camera_misposition"
+  radar_obstacles_to_camera_obstacles_misclassification: "radar_to_camera_misclassification"
+  radar_obstacles_to_sensor_fusion_misdetection: "radar_to_sensor_fusion_misdetection"
+  radar_obstacles_to_sensor_fusion_misposition: "radar_to_sensor_fusion_misposition"
+  radar_obstacles_to_sensor_fusion_misclassification: "radar_to_sensor_fusion_misclassification"
+  lidar_obstacles_to_camera_obstacles_misdetection: "lidar_to_camera_misdetection"
+  lidar_obstacles_to_camera_obstacles_misposition: "lidar_to_camera_misposition"
+  lidar_obstacles_to_camera_obstacles_misclassification: "lidar_to_camera_misclassification"
+  lidar_obstacles_to_radar_obstacles_misdetection: "lidar_to_radar_misdetection"
+  lidar_obstacles_to_radar_obstacles_misposition: "lidar_to_radar_misposition"
+  lidar_obstacles_to_radar_obstacles_misclassification: "lidar_to_radar_misclassification"
+ground_truth_tests:
+  - lidar_obstacles_misdetection
+  - lidar_obstacles_misposition
+  - lidar_obstacles_misclassification
+  - radar_obstacles_misdetection
+  - radar_obstacles_misposition
+  - radar_obstacles_misclassification
+  - camera_obstacles_misdetection
+  - camera_obstacles_misposition
+  - camera_obstacles_misclassification
+  - sensor_fusion_misdetection
+  - sensor_fusion_misposition
+  - sensor_fusion_misclassification

@@ -1,0 +1,50 @@
+#include <iostream>
+
+#include "percival/diagnosability/diagnostic_factor_graph.h"
+#include "percival/diagnosability/example_graphs.hpp"
+#include "percival/diagnosability/factor_graph/dummy.h"
+
+using namespace percival;
+
+DiagnosticFactorGraph<factor_graph::DummyFactorGraph> SimpleGraph(bool with_modules = false, bool randmomize = false) {
+  DiagnosticFactorGraph<factor_graph::DummyFactorGraph> dfg;
+  if (with_modules) {
+    dfg.addFailureMode("m1", FailureModeType::MODULE, 0.1);
+    dfg.addFailureMode("m2", FailureModeType::MODULE, 0.1);
+  }
+
+  dfg.addFailureMode("f1", FailureModeType::OUTPUT);
+  dfg.addFailureMode("f2", FailureModeType::OUTPUT);
+
+  if (randmomize)
+    dfg.addTest("A", {"f1", "f2"}, &utils::RandomTest);
+  else
+    dfg.addTest("A", {"f1", "f2"}, &utils::PerfectTest);
+
+  if (with_modules) {
+    if (randmomize) {
+      dfg.addRelationship("r1", {"m1", "f1"}, &utils::Random);
+      dfg.addRelationship("r2", {"m2", "f2"}, &utils::Random);
+    } else {
+      dfg.addRelationship("r1", {"m1", "f1"}, &utils::AllFailOrNone);
+      dfg.addRelationship("r2", {"m2", "f2"}, &utils::AllFailOrNone);
+    }
+  }
+  return dfg;
+}
+
+int main() {
+  auto dfg = SimpleGraph(false, true);
+  dfg.bake();
+  {
+    Syndrome syn = {{"A", TestOutcome::PASS}};
+    auto fi = dfg.faultIdentification(syn);
+    SystemState expected_fi = {{"f1", FailureModeState::INACTIVE}, {"f2", FailureModeState::INACTIVE}};
+  }
+  {
+    Syndrome syn = {{"A", TestOutcome::FAIL}};
+    auto fi = dfg.faultIdentification(syn);
+    SystemState expected_fi = {{"f1", FailureModeState::ACTIVE}, {"f2", FailureModeState::ACTIVE}};
+  }
+  return 0;
+}

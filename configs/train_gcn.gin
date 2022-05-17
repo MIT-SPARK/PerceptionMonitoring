@@ -1,0 +1,14 @@
+Main.gpus = 1
+Main.debug = False
+Main.max_epochs = 100
+Main.ignore_modules = False
+
+Main.weighted_syndrome = True
+Main.unique_features = True
+
+FaultIdentificationDataModule.batch_size = 16
+
+GraphConvolution.conv_layer = "GCNConv"
+GraphConvolution.hidden_channels = 16
+GraphConvolution.num_layers = 2
+
